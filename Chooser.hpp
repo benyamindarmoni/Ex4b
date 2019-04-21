@@ -5,10 +5,6 @@ using namespace std;
 
 class Chooser{
 string number;
-public:
-Chooser(string s){
-number=s;
-}
 virtual std::string choose(uint length)=0;
 
 
