@@ -2,9 +2,12 @@
 #pragma once
 using namespace std;
 #include <string>
-
+namespace bullpgia{ 
 class Guesser{
 string number;
+  
 public:
-virtual std::string choose(uint length)=0;
+  Guesser(string s);
+virtual std::string Guesser(uint length)=0;
+};
 }
