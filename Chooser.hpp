@@ -5,6 +5,8 @@ using namespace std;
 
 class Chooser{
 string number;
+    public:
+    Chooser(string);
 virtual std::string choose(uint length)=0;
 
 
