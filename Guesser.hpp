@@ -4,10 +4,11 @@ using namespace std;
 #include <string>
 namespace bullpgia{ 
 class Guesser{
-string number;
-  
+  public:
+  uint length;
 public:
-  Guesser(string s);
-virtual std::string Guesser(uint length)=0;
+virtual string guess()=0;
+ void startNewGame(uint);
+ void learn(string);
 };
 }
