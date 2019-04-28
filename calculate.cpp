@@ -13,6 +13,6 @@ string calculateBullAndPgia(string a,string b){
       }
    
 }
-ans=bul+" , "+pgia;
+ans=bul+","+pgia;
 return ans;
 }
