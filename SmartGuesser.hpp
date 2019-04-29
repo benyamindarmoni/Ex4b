@@ -1,5 +1,5 @@
 #pragma once
-
+#include "calculate.hpp"
 #include "Guesser.hpp"
 #include <iostream>
 
