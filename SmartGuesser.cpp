@@ -1,4 +1,3 @@
-
 #include "SmartGuesser.hpp"
 #include <stdlib.h>
 #include <string>
@@ -9,10 +8,10 @@ namespace bullpgia{
      return "";
  }
  void SmartGuesser::startNewGame(uint a) {
-     
+     len=a;
  }
  void SmartGuesser::learn(string a) {
      
- }
+}
  
 }
