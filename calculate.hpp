@@ -1,9 +1,8 @@
 #pragma once
 #include <string>
-
 #include <iostream>
 using namespace std;
 namespace bullpgia{
-string calculateBullAndPgia(string,string);
-
+	
+  string calculateBullAndPgia( string, string);
 }
