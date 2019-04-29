@@ -7,8 +7,11 @@ class Guesser{
   public:
   uint length;
 public:
+virtual ~Guesser() {}
+
 virtual string guess()=0;
- void startNewGame(uint);
- void learn(string);
+ virtual void startNewGame(uint){};
+ virtual void learn(string){};
+ 
 };
 }
