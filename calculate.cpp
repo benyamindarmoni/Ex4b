@@ -1,11 +1,12 @@
 #include <string>
 #include "calculate.hpp"
 #include <iostream>
-//using namespace bullpgia;
+
 using namespace std;
 
-string calculateBullAndPgia(string a,string b){
 
+
+ string bullpgia::  calculateBullAndPgia( string a, string b){
   int bul=0;
   int pgia=0;
   for(int i=0;i<a.length();i++){
