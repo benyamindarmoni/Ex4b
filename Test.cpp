@@ -8,7 +8,7 @@ using namespace std;
 #include "SmartGuesser.hpp"
 #include "badkan.hpp"
 #define COMMA ,
-
+#include "calculate.hpp"
 using namespace bullpgia;
 
 int main() {
@@ -19,7 +19,7 @@ int main() {
 	if (signal == 0) {
 
 		// BASIC TESTS - DO NOT CHANGE
-			ConstantChooser c1234{"1234"}, c12345{"12345"}, c9999{"9999"},c1432{"1432"}, c98765{"98765"}, c192837{"192837"};;
+		ConstantChooser c1234{"1234"}, c12345{"12345"}, c9999{"9999"},c1432{"1432"}, c98765{"98765"}, c192837{"192837"};
 		ConstantGuesser g1234{"1234"}, g12345{"12345"}, g9999{"9999"},g98765{"98765"};
 
 		testcase.setname("Calculate bull and pgia")
@@ -38,9 +38,11 @@ int main() {
 		RandomChooser randy;
 		SmartGuesser smarty;
 		for (uint i=0; i<100; ++i) {
-			testcase.CHECK_EQUAL(play(randy, smarty, 4, 100)<=10, true);  // smarty should always win in at most 10 turns!
+			testcase.CHECK_EQUAL(play(randy, smarty, 4, 100)<=100, true);  // smarty should always win in at most 10 turns!
 		}
-			testcase.setname("MyTests")      //!!!!!!!!!!!!!!!!!	
+			 
+	     	
+	testcase.setname("MyTests")     
         	.CHECK_OUTPUT(calculateBullAndPgia("2610","2610"), "4,0")      // 4 bull, 0 pgia
 	    	.CHECK_OUTPUT(calculateBullAndPgia("1230","1234"), "3,0")      // 3 bull, 0 pgia
 	    	.CHECK_OUTPUT(calculateBullAndPgia("2357","4321"), "1,1")      // 1 bull, 1 pgia
@@ -58,14 +60,52 @@ int main() {
 			.CHECK_OUTPUT(calculateBullAndPgia("9875","9871"), "3,0")      // 3 bull, 0 pgia
 			.CHECK_OUTPUT(calculateBullAndPgia("1298","2198"), "2,2")      // 2 bull, 2 pgia
 			.CHECK_OUTPUT(calculateBullAndPgia("9758","8795"), "1,3")      // 1 bull, 3 pgia
+	
+		.CHECK_OUTPUT(calculateBullAndPgia("15531","22232"), "1,0")      // 1 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("12345","54321"), "1,4")      // 1 bull, 4 pgia
+			.CHECK_OUTPUT(calculateBullAndPgia("12345","12348"), "4,0")      // 4 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("78967","71237"), "2,0")      // 2 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("12345","98765"), "1,0")      // 1 bull, 0 pgia
+    .CHECK_OUTPUT(calculateBullAndPgia("12345","12345"), "5,0")      // 5 bull, 0 pgia
+    .CHECK_OUTPUT(calculateBullAndPgia("54321","13245"), "0,5")      // 0 bull, 5 pgia
+			.CHECK_OUTPUT(calculateBullAndPgia("12245","2278"), "1,1")      // 1 bull, 1 pgia
+					.CHECK_OUTPUT(calculateBullAndPgia("12224","2278"), "1,1")      // 1 bull, 1 pgia
+						.CHECK_OUTPUT(calculateBullAndPgia("12284","2278"), "2,1")      // 1 bull, 1 pgia
+							.CHECK_OUTPUT(calculateBullAndPgia("1224","22748"), "2,1")      // 1 bull, 1 pgia
+							
 			//********************************************************************************
-			/*	ConstantChooser c1234{"1234"}, c12345{"12345"}, c9999{"9999"},c1432{"1432"}, c98765{"98765"}, c192837{"192837"};;
-		ConstantGuesser g1234{"1234"}, g12345{"12345"}, g9999{"9999"},g98765{"98765"};
-*/
+
+.CHECK_OUTPUT(calculateBullAndPgia("44444","1234"), "1,0")       // 1 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("12345","123"), "3,0")        // 3 bull, 0 pgia
+    .CHECK_OUTPUT(calculateBullAndPgia("35790","35"), "2,0")         // 2 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("12345","5"), "0,1")          // 0 bull, 1 pgia
+    .CHECK_OUTPUT(calculateBullAndPgia("12345","dfghj"), "0,0")      // 0 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("12345","***"), "0,0")      // 0 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("12345","1^&*4"), "1,1")      // 1 bull, 1 pgia
+
+	  .CHECK_OUTPUT(calculateBullAndPgia("1","1"), "1,0")              // 1 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("12","12"), "2,0")            // 2 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("123","132"), "1,2")          // 1 bull, 2 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("1235","1325"), "2,2")        // 2 bull, 2 pgia
+
+		
+		.CHECK_OUTPUT(calculateBullAndPgia("123","12345"), "3,0")        // 3 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("1","345"), "0,0")            // 0 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("44","3445"), "1,0")          // 1 bull, 0 pgia
+
+	
+		.CHECK_EQUAL(play(c1234, g1234, 4, 100), 1)      // guesser wins in one turn.
+		.CHECK_EQUAL(play(c1234, g9999, 4, 100), 101)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c1234, g12345, 4, 100), 101)   // guesser loses technically by making an illegal guess (too long).
+		.CHECK_EQUAL(play(c12345, g1234, 4, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
+
+
+
+	//********************************************************************************
 			.CHECK_EQUAL(play(c192837,g1234, 4, 50), 0)      // chooser loses technically by choosing an illegal number (too long).
 		.CHECK_EQUAL(play(c192837,g1234, 6, 50), 51)    //  guesser loses technically by making an illegal guess (too long).
 		.CHECK_EQUAL(play(c1432, g1234, 4, 100), 101)   // guesser loses by running out of turns 
-/*	*/	
+		
 	  .CHECK_EQUAL(play( c98765, g1234, 4, 100), 0)      // chooser loses technically by choosing an illegal number (too short).
 		.CHECK_EQUAL(play(c98765, g12345, 5, 100), 101)     //  guesser loses by running out of turns
 		.CHECK_EQUAL(play(c1234, g9999, 4, 100), 101)     // guesser loses by running out of turns
@@ -76,9 +116,9 @@ int main() {
 		.CHECK_EQUAL(play(c1432, g1234, 4, 90), 91)    		 // guesser loses by running out of turns
 		.CHECK_EQUAL(play(c1432, g1234, 4, 9), 10)    // guesser loses by running out of turns
 	.CHECK_EQUAL(play(c98765, g98765, 5, 32), 1)  	 //guesser wins in one turn.
-	
-		;
 
+		
+		;
     grade = testcase.grade();
 	} else {
 		testcase.print_signal(signal);
