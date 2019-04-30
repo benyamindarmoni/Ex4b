@@ -5,10 +5,15 @@
 using namespace std;
 
 
+
  string bullpgia::  calculateBullAndPgia( string a, string b){
   int bul=0;
   int pgia=0;
-  for(int i=0;i<a.length();i++){
+  int min=0;
+  if(a.length()<b.length())min=a.length();
+  else
+      min=b.length();
+  for(int i=0;i<min;i++){
      
           if(a[i]==b[i]){
               bul++;
@@ -16,7 +21,7 @@ using namespace std;
       }
    
 }
-if(bul!=a.length()){
+if(bul!=min){
   for(int i=0;i<a.length();i++){
       for(int j=0;j<a.length();j++){
           if(a[i]!='x'&&a[i]==b[j]){
