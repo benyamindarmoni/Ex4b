@@ -27,7 +27,7 @@ if(bul!=min){
           if(a[i]!='x'&&a[i]==b[j]){
               pgia++; 
          b[j]='x';
-         continue;
+         break;
       }
 }
 }
