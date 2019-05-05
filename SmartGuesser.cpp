@@ -16,6 +16,7 @@ namespace bullpgia{
   
  }
  string SmartGuesser::guess() {
+   if(number_len==0)return "";
    for(int i=0;i<array_len;i++){
     if(arr[i]==true){
      curr_guess=to_string(i);
