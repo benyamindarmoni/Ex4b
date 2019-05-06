@@ -7,7 +7,7 @@ using namespace std;
 namespace bullpgia{
  
  void SmartGuesser::startNewGame(uint a) {
-  number_len=a;
+  length=a;
   array_len=pow(10, a);
      arr=new bool[array_len];
      for(int i=0;i<array_len;i++){
@@ -16,14 +16,14 @@ namespace bullpgia{
   
  }
  string SmartGuesser::guess() {
-   if(number_len==0)return "";
+   if(length==0)return "";
    for(int i=0;i<array_len;i++){
     if(arr[i]==true){
      curr_guess=to_string(i);
     break;
    }
    }
-   while(curr_guess.length()<number_len){
+   while(curr_guess.length()<length){
     curr_guess="0"+curr_guess;
    }
      return curr_guess;
@@ -34,7 +34,7 @@ namespace bullpgia{
      for(int i=0;i<array_len;i++){
       if(arr[i]==false)continue;
       index=to_string(i);
-      while(index.length()<number_len){
+      while(index.length()<length){
     index="0"+index;
    }
       if(calculateBullAndPgia(index,curr_guess).compare(a)!=0){
