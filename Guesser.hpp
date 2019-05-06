@@ -4,8 +4,8 @@ using namespace std;
 #include <string>
 namespace bullpgia{ 
 class Guesser{
-  public:
-  uint length;
+ // public:
+  //uint length;
 public:
 virtual ~Guesser() {}
 
