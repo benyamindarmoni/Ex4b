@@ -11,7 +11,6 @@ namespace bullpgia{
         string curr_guess;
         bool*  arr;
         uint array_len;
-        uint number_len;
         ~SmartGuesser() {
          delete [] arr;
         }
